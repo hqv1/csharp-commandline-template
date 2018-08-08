@@ -1,4 +1,5 @@
 ﻿using System;
+using CommandLineTemplate.Handlers;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,8 @@ namespace CommandLineTemplate
             IServiceCollection services = new ServiceCollection();
             services.AddOptions();
 
-            //todo: Add options 
+            //todo: Add options. Delete the following line
+            services.Configure<NoOpHandler.Options>(configuration.GetSection(NoOpHandler.Options.ConfigurationName));
 
             services.AddScoped<ILogger>(provider => new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
