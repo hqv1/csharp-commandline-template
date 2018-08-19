@@ -21,11 +21,16 @@ namespace CommandLineTemplate
             services.AddScoped<ILogger>(provider => new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .Enrich.WithExceptionDetails()
+                .Enrich.FromLogContext()
                 .CreateLogger());
 
             services.AddMediatR();
-            
-            //todo: Add services
+
+            //todo: Add 
+            //services.AddScoped<IInterface, Implementation>();
+
+            //var connectionString = configuration.GetConnectionString(Some.ConnectionStringName);
+            //services.AddSingleton(provider => new ThrawContextFactory(connectionString));
 
             return services.BuildServiceProvider();
         }
